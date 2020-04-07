@@ -28,7 +28,7 @@ spring:
 
 swagger:
   baseApiPackage:
-  - "com.cargoracker"
+  - "com.cargotracker"
   - "com.ibm.health"
   title: "cargo-tracking-service"
   description: "cargo-tracking-service"
