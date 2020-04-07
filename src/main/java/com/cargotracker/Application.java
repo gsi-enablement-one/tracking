@@ -1,4 +1,4 @@
-package com.cargotracker.app;
+package com.cargotracker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
