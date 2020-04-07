@@ -1,19 +1,37 @@
 spring:
+  profiles: 
+    active: default
+  cloud:
+    stream:
+      bindings:      
+        cargoRoutingChannel:
+          destination: cargoRoutings
+          group: cargoRoutingsQueue
+          contentType: 'application/json'
+        cargoHandlingChannel1:
+          destination: cargoHandlings1
+          group: cargoHandlingsQueue1
+          contentType: 'application/json'                                                   
+                    
+  datasource:
+    url: "jdbc:mysql://mysql.cargotracker:3306/trackingmsdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=EST"
+    username: trackingmsdb
+    password: trackingmsdb
+  rabbitmq:
+    host: rabbitmq-headless.cargotracker
+    port: 5672
+    username: guest
+    password: guest
+
   application:
     name: "${IMAGE_NAME:template-spring-boot}"
 
-hello:
-  pattern: "Hello there, %s!"
-
-greetingservice:
-  beanName: "hola"
-
 swagger:
   baseApiPackage:
-  - "com.ibm.hello"
+  - "com.cargoracker"
   - "com.ibm.health"
-  title: "${IMAGE_NAME:template-spring-boot}"
-  description: "Description"
+  title: "cargo-tracking-service"
+  description: "cargo-tracking-service"
   version: "1.0.0"
   termsOfServiceUrl: ""
 
@@ -28,7 +46,7 @@ management:
         include: "*"
 
 server:
-  port: ${PORT:9080}
+  port: ${PORT:8002}
 
 logging:
   level:
